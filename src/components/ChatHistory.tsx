@@ -36,9 +36,9 @@ export default function ChatHistory() {
   
       const data = await response.json();
   
-      // Ensure messages are correctly formatted
+      // Ensure the data is in the correct format
       if (Array.isArray(data)) {
-        setMessages(data.map((content: string) => ({ role: "user", content })));
+        setMessages(data); // data is already in the correct format
       } else {
         console.error("Invalid message format:", data);
       }
@@ -48,8 +48,6 @@ export default function ChatHistory() {
       console.error("Error loading session:", error);
     }
   };
-  
-  
 
   return (
     <div className="mt-4">
@@ -65,8 +63,10 @@ export default function ChatHistory() {
           >
             <p>Session {index + 1}</p>
           </div>
+         
         ))
       )}
+       
     </div>
   );
 }
